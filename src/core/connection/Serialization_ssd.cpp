@@ -73,7 +73,7 @@ namespace Qv2ray::core::connection::Serialization
         // A pair of an error string list, together with some optionally existed pair, which contains a QString for airport name and a List of
         // pairs that contains a QString for connection name and finally, our ShadowSocksServerObject
         //
-        QMultiHash<QString, CONFIGROOT> ConvertConfigFromSSDString(const QString &uri, QString *groupName, QStringList *logList)
+        QMultiHash<QString, CONFIGROOT> Deserialize(const QString &uri, QString *groupName, QStringList *logList)
         {
             // ssd links should begin with "ssd://"
             if (!uri.startsWith("ssd://"))
@@ -84,7 +84,7 @@ namespace Qv2ray::core::connection::Serialization
 
             // decode base64
             const auto ssdURIBody = QStringRef(&uri, 6, uri.length() - 6);
-            const auto decodedJSON = QByteArray::fromBase64(ssdURIBody.toUtf8());
+            const auto decodedJSON = SafeBase64Decode(ssdURIBody.toString()).toUtf8();
 
             if (decodedJSON.length() == 0)
             {
@@ -209,7 +209,7 @@ namespace Qv2ray::core::connection::Serialization
                 OUTBOUNDS outbounds;
                 outbounds.append(GenerateOutboundEntry("shadowsocks", GenerateShadowSocksOUT({ ssObject }), {}));
                 JADD(outbounds)
-                serverList.insertMulti(totalName, root);
+                serverList.insert(totalName, root);
             }
 
             // returns the current result

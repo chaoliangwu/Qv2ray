@@ -74,7 +74,7 @@ jobs:
           path: ../Qt
           key: QtCache-${{ matrix.platform }}-${{ matrix.arch }}-${{ matrix.qt_version }}
       - name: Installing Qt - ${{ matrix.arch }}
-        uses: jurplel/install-qt-action@v2.5.0
+        uses: jurplel/install-qt-action@v2
         with:
           version: ${{ matrix.qt_version }}
           arch: ${{ matrix.qtarch }}
@@ -142,8 +142,8 @@ jobs:
         if: matrix.platform == 'ubuntu-16.04'
         shell: bash
         env:
-          CC: /usr/bin/gcc-9
-          CXX: /usr/bin/g++-9
+          CC: /usr/bin/gcc-7
+          CXX: /usr/bin/g++-7
         run: |
           mkdir build
           cd build

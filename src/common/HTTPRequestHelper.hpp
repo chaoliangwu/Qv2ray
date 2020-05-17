@@ -1,4 +1,4 @@
-﻿/*
+/*
     Copyright (C) 2019 SoneWinstone (jianwenzhen@qq.com)
     Copyright (C) 2019 Leroy.H.Y
 
@@ -33,7 +33,11 @@ namespace Qv2ray::common
         ~QvHttpRequestHelper();
         // get
         void AsyncGet(const QString &url);
-        QByteArray Get(const QString &url);
+        QByteArray Get(const QUrl &url);
+        QByteArray Get(const QString &url)
+        {
+            return Get(QUrl{ url });
+        }
       signals:
         void OnRequestFinished(QByteArray &data);
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ui/models/NodeModelsBase.hpp"
+#include "NodeModelsBase.hpp"
 
 #include <QtCore/qglobal.h>
 
@@ -53,7 +53,7 @@ class QvInboundNodeModel : public NodeDataModel
     }
     void setData(const QString &data)
     {
-        _in = make_shared<InboundNodeData>(data);
+        _in = std::make_shared<InboundNodeData>(data);
         _label->setText(data);
         _label->adjustSize();
     }

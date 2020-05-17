@@ -1,6 +1,5 @@
-﻿#pragma once
+#pragma once
 #include "base/Qv2rayBase.hpp"
-#include "core/CoreSafeTypes.hpp"
 #include "core/kernel/QvKernelABIChecker.hpp"
 
 #include <QProcess>
@@ -21,7 +20,7 @@ namespace Qv2ray::core::kernel
         qulonglong getAllSpeedUp();
         qulonglong getAllSpeedDown();
         //
-        optional<QString> StartConnection(const CONFIGROOT &root);
+        std::optional<QString> StartConnection(const CONFIGROOT &root);
         void StopConnection();
         bool KernelStarted = false;
         //

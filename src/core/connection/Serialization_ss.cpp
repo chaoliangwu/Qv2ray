@@ -7,7 +7,7 @@ namespace Qv2ray::core::connection
 {
     namespace Serialization::ss
     {
-        CONFIGROOT ConvertConfigFromSSString(const QString &ssUri, QString *alias, QString *errMessage)
+        CONFIGROOT Deserialize(const QString &ssUri, QString *alias, QString *errMessage)
         {
             ShadowSocksServerObject server;
             QString d_name;
@@ -81,7 +81,7 @@ namespace Qv2ray::core::connection
                 auto x = QUrl::fromUserInput(uri);
                 server.address = x.host();
                 server.port = x.port();
-                QString userInfo = Base64Decode(x.userName());
+                QString userInfo = SafeBase64Decode(x.userName());
                 auto userInfoSp = userInfo.indexOf(':');
                 //
                 DEBUG(MODULE_CONNECTION, "Userinfo splitter position: " + QSTRN(userInfoSp))
@@ -107,7 +107,7 @@ namespace Qv2ray::core::connection
             return root;
         }
 
-        const QString ConvertConfigToSSString(const ShadowSocksServerObject &server, const QString &alias, bool isSip002)
+        const QString Serialize(const ShadowSocksServerObject &server, const QString &alias, bool isSip002)
         {
             auto myAlias = QUrl::toPercentEncoding(alias);
 

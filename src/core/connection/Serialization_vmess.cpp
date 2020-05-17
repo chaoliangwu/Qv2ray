@@ -10,7 +10,7 @@ namespace Qv2ray::core::connection
     {
 
         // From https://github.com/2dust/v2rayN/wiki/分享链接格式说明(ver-2)
-        const QString ConvertConfigToVMessString(const StreamSettingsObject &transfer, const VMessServerObject &server, const QString &alias)
+        const QString Serialize(const StreamSettingsObject &transfer, const VMessServerObject &server, const QString &alias)
         {
             QJsonObject vmessUriRoot;
             // Constant
@@ -53,15 +53,19 @@ namespace Qv2ray::core::connection
                 vmessUriRoot["path"] = transfer.httpSettings.path;
             }
 
+            if (!vmessUriRoot.contains("type") || vmessUriRoot["type"].toString().isEmpty())
+            {
+                vmessUriRoot["type"] = "none";
+            }
+
             //
             auto vmessPart = Base64Encode(JsonToString(vmessUriRoot, QJsonDocument::JsonFormat::Compact));
             return "vmess://" + vmessPart;
         }
         // This generates global config containing only one outbound....
-        CONFIGROOT ConvertConfigFromVMessString(const QString &vmessStr, QString *alias, QString *errMessage)
+        CONFIGROOT Deserialize(const QString &vmessStr, QString *alias, QString *errMessage)
         {
 #define default CONFIGROOT()
-            LOG(MODULE_SETTINGS, "Trying to convert from a vmess string.")
             QString vmess = vmessStr;
 
             if (vmess.trimmed() != vmess)
@@ -88,7 +92,7 @@ namespace Qv2ray::core::connection
                 return default;
             }
 
-            auto vmessString = Base64Decode(b64Str);
+            auto vmessString = SafeBase64Decode(b64Str);
             auto jsonErr = VerifyJsonString(vmessString);
 
             if (!jsonErr.isEmpty())
@@ -105,33 +109,9 @@ namespace Qv2ray::core::connection
                 return default;
             }
 
-            // Explicitly don't support v1 vmess links.
-            if (!vmessConf.contains("v")) {
-                *errMessage = QObject::tr("seems like a v1 vmess, we don't support it");
-                return default;
-            }
-            bool flag = true;
-            // C is a quick hack...
-#define C(k) (flag = (vmessConf.contains(k) ? (errMessage->clear(), true) : (*errMessage += (k " does not exist"), false)))
-            // id, aid, port and add are mandatory fields of a vmess://
-            // link.
-            flag = flag && C("id") && (C("aid") || C("alterId")) && C("port") && C("add");
-            // Stream Settings
-            auto net = vmessConf["net"].toString();
-
-            if (net == "http" || net == "ws")
-                flag = flag && C("host") && C("path");
-            else if (net == "domainsocket")
-                flag = flag && C("path");
-            else if (net == "quic")
-                flag = flag && C("host") && C("type") && C("path");
-
-#undef C
-            // return flag ? 0 : 1;
-
             // --------------------------------------------------------------------------------------
             CONFIGROOT root;
-            QString ps, add, id, /*net,*/ type, host, path, tls;
+            QString ps, add, id, net, type, host, path, tls;
             int port, aid;
             //
             // __vmess_checker__func(key, values)
@@ -167,6 +147,23 @@ namespace Qv2ray::core::connection
             LOG(MODULE_IMPORT, " --> PS: " + ps)                                                                                                \
         }                                                                                                                                       \
     }
+
+            // vmess v1 upgrader
+            if (!vmessConf.contains("v"))
+            {
+                LOG(MODULE_IMPORT, "Detected deprecated vmess v1. Trying to upgrade...")
+                if (const auto network = vmessConf["net"].toString(); network == "ws" || network == "h2")
+                {
+                    const QStringList hostComponents = vmessConf["host"].toString().replace(" ", "").split(";");
+                    if (const auto nParts = hostComponents.length(); nParts == 1)
+                        vmessConf["path"] = hostComponents[0], vmessConf["host"] = "";
+                    else if (nParts == 2)
+                        vmessConf["path"] = hostComponents[0], vmessConf["host"] = hostComponents[1];
+                    else
+                        vmessConf["path"] = "/", vmessConf["host"] = "";
+                }
+            }
+
             // Strict check of VMess protocol, to check if the specified value
             // is in the correct range.
             //
@@ -193,9 +190,10 @@ namespace Qv2ray::core::connection
                                            << "domainsocket"                                                                            //
                                            << "quic");                                                                                  //
                                                                                                                                         //
-                __vmess_checker__func(path, << "");                                                                                     //
-                __vmess_checker__func(host, << "");                                                                                     //
-                __vmess_checker__func(tls, << "");                                                                                      //
+                __vmess_checker__func(tls, << "none"                                                                                    //
+                                           << "tls");                                                                                   //
+                path = vmessConf.contains("path") ? vmessConf["path"].toVariant().toString() : (net == "quic" ? "" : "/");
+                host = vmessConf.contains("host") ? vmessConf["host"].toVariant().toString() : (net == "quic" ? "none" : "");
             }
             // Repect connection type rather than obfs type //
             if (QStringList{ "srtp", "utp", "wechat-video" }.contains(type))                //
@@ -224,7 +222,7 @@ namespace Qv2ray::core::connection
             // VMess root config
             OUTBOUNDSETTING vConf;
             QJsonArray vnextArray;
-            vnextArray.append(JsonFromString(StructToJsonString(serv)));
+            vnextArray.append(serv.toJson());
             vConf["vnext"] = vnextArray;
             //
             // Stream Settings
@@ -249,7 +247,8 @@ namespace Qv2ray::core::connection
             }
             else if (net == "ws")
             {
-                streaming.wsSettings.headers["Host"] = host;
+                if (!host.isEmpty())
+                    streaming.wsSettings.headers["Host"] = host;
                 streaming.wsSettings.path = path;
             }
             else if (net == "kcp")
@@ -284,7 +283,7 @@ namespace Qv2ray::core::connection
             streaming.network = net;
             //
             // WARN Mux is missing here.
-            auto outbound = GenerateOutboundEntry("vmess", vConf, GetRootObject(streaming), QJsonObject(), "0.0.0.0", OUTBOUND_TAG_PROXY);
+            auto outbound = GenerateOutboundEntry("vmess", vConf, streaming.toJson(), {}, "0.0.0.0", OUTBOUND_TAG_PROXY);
             //
             root["outbounds"] = QJsonArray() << outbound;
             // If previous alias is empty, just the PS is needed, else, append a "_"

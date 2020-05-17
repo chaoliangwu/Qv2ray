@@ -4,6 +4,7 @@
 #include "components/geosite/QvGeositeReader.hpp"
 #include "components/route/RouteSchemeIO.hpp"
 #include "components/route/presets/RouteScheme_V2rayN.hpp"
+#include "ui/common/UIBase.hpp"
 
 #include <QFileDialog>
 #include <QInputDialog>
@@ -48,7 +49,7 @@ QList<QAction *> RouteSettingsMatrixWidget::getBuiltInSchemes()
     return list;
 }
 
-QAction *RouteSettingsMatrixWidget::schemeToAction(const QString &name, const Qv2ray::base::config::Qv2rayRouteConfig &scheme)
+QAction *RouteSettingsMatrixWidget::schemeToAction(const QString &name, const Qv2ray::base::config::Qv2rayConfig_Routing &scheme)
 {
     QAction *action = new QAction(this);
     action->setText(name);
@@ -56,7 +57,7 @@ QAction *RouteSettingsMatrixWidget::schemeToAction(const QString &name, const Qv
     return action;
 }
 
-void RouteSettingsMatrixWidget::SetRouteConfig(const Qv2rayRouteConfig &conf)
+void RouteSettingsMatrixWidget::SetRouteConfig(const Qv2rayConfig_Routing &conf)
 {
     domainStrategyCombo->setCurrentText(conf.domainStrategy);
     //
@@ -69,9 +70,9 @@ void RouteSettingsMatrixWidget::SetRouteConfig(const Qv2rayRouteConfig &conf)
     proxyIPTxt->setText(conf.ips.proxy.join(NEWLINE));
 }
 
-Qv2rayRouteConfig RouteSettingsMatrixWidget::GetRouteConfig() const
+Qv2rayConfig_Routing RouteSettingsMatrixWidget::GetRouteConfig() const
 {
-    config::Qv2rayRouteConfig conf;
+    config::Qv2rayConfig_Routing conf;
     conf.domainStrategy = this->domainStrategyCombo->currentText();
     conf.domains.block = SplitLines(blockDomainTxt->toPlainText().replace(" ", ""));
     conf.domains.direct = SplitLines(directDomainTxt->toPlainText().replace(" ", ""));
@@ -104,7 +105,7 @@ void RouteSettingsMatrixWidget::on_importSchemeBtn_clicked()
         // read the file and parse back to struct.
         // if error occurred on parsing, an exception will be thrown.
         auto content = StringFromFile(ACCESS_OPTIONAL_VALUE(filePath));
-        auto scheme = StructFromJsonString<Qv2rayRouteScheme>(content);
+        auto scheme = Qv2rayRouteScheme::fromJson(JsonFromString(content));
 
         // show the information of this scheme to user,
         // and ask user if he/she wants to import and apply this.
@@ -116,12 +117,12 @@ void RouteSettingsMatrixWidget::on_importSchemeBtn_clicked()
             return;
 
         // write the scheme onto the window
-        this->SetRouteConfig(static_cast<Qv2rayRouteConfig>(scheme));
+        this->SetRouteConfig(static_cast<Qv2rayConfig_Routing>(scheme));
 
         // done
         LOG(MODULE_SETTINGS, "Imported route config: " + scheme.name + " by: " + scheme.author)
     }
-    catch (exception e)
+    catch (std::exception &e)
     {
         LOG(MODULE_UI, "Exception: " + QString(e.what()))
         // TODO: Give some error as Notification
@@ -174,16 +175,15 @@ void RouteSettingsMatrixWidget::on_exportSchemeBtn_clicked()
         scheme.domains = config.domains;
 
         // serialize and write out
-        auto content = StructToJsonString(scheme);
+        auto content = JsonToString(scheme.toJson());
         StringToFile(content, ACCESS_OPTIONAL_VALUE(savePath));
 
         // done
         // TODO: Give some success as Notification
         QvMessageBoxInfo(this, dialogTitle, tr("Your route scheme has been successfully exported!"));
     }
-    catch (exception)
+    catch (...)
     {
-
         // TODO: Give some error as Notification
     }
 }

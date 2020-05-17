@@ -1,11 +1,12 @@
-﻿#include "3rdparty/SingleApplication/singleapplication.h"
+#include "3rdparty/SingleApplication/singleapplication.h"
 #include "common/CommandArgs.hpp"
 #include "common/QvHelpers.hpp"
 #include "common/QvTranslator.hpp"
 #include "core/handler/ConfigHandler.hpp"
 #include "core/settings/SettingsBackend.hpp"
 #include "src/components/plugins/QvPluginHost.hpp"
-#include "ui/w_MainWindow.hpp"
+#include "ui/styles/StyleManager.hpp"
+#include "ui/windows/w_MainWindow.hpp"
 
 #include <QApplication>
 #include <QFileInfo>
@@ -25,7 +26,7 @@
 
 void signalHandler(int signum)
 {
-    cout << "Qv2ray: Interrupt signal (" << signum << ") received." << endl;
+    std::cout << "Qv2ray: Interrupt signal (" << signum << ") received." << std::endl;
     ExitQv2ray();
     qApp->exit(-99);
 }
@@ -136,7 +137,7 @@ bool initialiseQv2ray()
             return false;
         }
 
-        Qv2rayConfig conf;
+        Qv2rayConfigObject conf;
         conf.kernelConfig.KernelPath(QString(QV2RAY_DEFAULT_VCORE_PATH));
         conf.kernelConfig.AssetsPath(QString(QV2RAY_DEFAULT_VASSETS_PATH));
         conf.logLevel = 3;
@@ -182,9 +183,9 @@ int main(int argc, char *argv[])
             case CommandLineOk: break;
 
             case CommandLineError:
-                cout << "Invalid command line arguments" << endl;
-                cout << errorMessage.toStdString() << endl;
-                cout << parser.Parser()->helpText().toStdString() << endl;
+                std::cout << "Invalid command line arguments" << std::endl;
+                std::cout << errorMessage.toStdString() << std::endl;
+                std::cout << parser.Parser()->helpText().toStdString() << std::endl;
                 break;
 
             case CommandLineVersionRequested:
@@ -193,9 +194,10 @@ int main(int argc, char *argv[])
                 LOG("QV2RAY_BUILD_EXTRA_INFO", QV2RAY_BUILD_EXTRA_INFO)
                 return 0;
 
-            case CommandLineHelpRequested: cout << parser.Parser()->helpText().toStdString() << endl; return 0;
+            case CommandLineHelpRequested: std::cout << parser.Parser()->helpText().toStdString() << std::endl; return 0;
         }
     }
+
 #ifdef Q_OS_UNIX
 
     // Unix OS root user check.
@@ -274,12 +276,13 @@ int main(int argc, char *argv[])
         "Copyright (c) 2019 ShadowSocks (@shadowsocks): libQtShadowsocks (LGPLv3)" NEWLINE                               //
         "Copyright (c) 2015-2020 qBittorrent (Anton Lashkov) (@qBittorrent): speedplotview (GPLv2)" NEWLINE              //
         "Copyright (c) 2020 Diffusions Nu-book Inc. (@nu-book): zxing-cpp (Apache)" NEWLINE                              //
+        "Copyright (c) 2020 feiyangqingyun: QWidgetDemo (Mulan PSL v1)" NEWLINE                                          //
             NEWLINE)                                                                                                     //
     //
     LOG(MODULE_INIT, "Qv2ray Start Time: " + QSTRN(QTime::currentTime().msecsSinceStartOfDay()))
     //
 #ifdef QT_DEBUG
-    cout << "WARNING: ========================= This is a debug build, many features are not stable enough. =========================" << endl;
+    std::cout << "WARNING: =================== This is a debug build, many features are not stable enough. ===================" << std::endl;
 #endif
     //
     // Qv2ray Initialize, find possible config paths and verify them.
@@ -312,7 +315,7 @@ int main(int argc, char *argv[])
     }
 
     // Load config object from upgraded config QJsonObject
-    auto confObject = StructFromJsonString<Qv2rayConfig>(JsonToString(conf));
+    auto confObject = Qv2rayConfigObject::fromJson(conf);
 
     if (confObject.uiConfig.language.isEmpty())
     {
@@ -360,15 +363,9 @@ int main(int argc, char *argv[])
     font.setFamily("Microsoft YaHei");
     _qApp.setFont(font);
 #endif
-    // Set custom themes.
-    QStringList themes = QStyleFactory::keys();
-    //_qApp.setDesktopFileName("qv2ray.desktop");
+    StyleManager = new QvStyleManager();
+    StyleManager->ApplyStyle(confObject.uiConfig.theme);
 
-    if (themes.contains(confObject.uiConfig.theme))
-    {
-        LOG(MODULE_INIT + " " + MODULE_UI, "Setting Qv2ray UI themes: " + confObject.uiConfig.theme)
-        qApp->setStyle(confObject.uiConfig.theme);
-    }
 #if (QV2RAY_USE_BUILTIN_DARKTHEME)
     LOG(MODULE_UI, "Using built-in theme.")
 
@@ -419,6 +416,7 @@ int main(int argc, char *argv[])
         // Initialise Connection Handler
         PluginHost = new QvPluginHost();
         ConnectionManager = new QvConfigHandler();
+
         // Show MainWindow
         MainWindow w;
         QObject::connect(&_qApp, &SingleApplication::instanceStarted, [&]() {
@@ -434,6 +432,7 @@ int main(int argc, char *argv[])
         auto rcode = _qApp.exec();
         delete ConnectionManager;
         delete PluginHost;
+        delete StyleManager;
         LOG(MODULE_INIT, "Quitting normally")
         return rcode;
 #ifndef QT_DEBUG

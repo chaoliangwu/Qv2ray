@@ -4,9 +4,7 @@
 #include "common/QvHelpers.hpp"
 #include "core/connection/ConnectionIO.hpp"
 
-#include <QDesktopServices>
 #include <QObject>
-#include <QWidget>
 
 namespace Qv2ray::core::kernel
 {
@@ -193,7 +191,7 @@ namespace Qv2ray::core::kernel
         KernelStarted = false;
     }
 
-    optional<QString> V2rayKernelInstance::StartConnection(const CONFIGROOT &root)
+    std::optional<QString> V2rayKernelInstance::StartConnection(const CONFIGROOT &root)
     {
         if (KernelStarted)
         {
@@ -239,7 +237,7 @@ namespace Qv2ray::core::kernel
             {
                 LOG(MODULE_VCORE, "API has been disabled by the command line argument \"-noAPI\"")
             }
-            else if (!GlobalConfig.apiConfig.enableAPI)
+            else if (!GlobalConfig.kernelConfig.enableAPI)
             {
                 LOG(MODULE_VCORE, "API has been disabled by the global config option")
             }

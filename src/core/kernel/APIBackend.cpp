@@ -73,8 +73,9 @@ namespace Qv2ray::core::kernel
             {
                 if (!dialed)
                 {
-                    auto channelAddress = "127.0.0.1:" + QString::number(GlobalConfig.apiConfig.statsPort);
+                    auto channelAddress = "127.0.0.1:" + QString::number(GlobalConfig.kernelConfig.statsPort);
 #ifndef BACKEND_LIBQVB
+                    LOG(MODULE_VCORE, "gRPC Version: " + QString::fromStdString(grpc::Version()))
                     Channel = grpc::CreateChannel(channelAddress.toStdString(), grpc::InsecureChannelCredentials());
                     StatsService service;
                     Stub = service.NewStub(Channel);

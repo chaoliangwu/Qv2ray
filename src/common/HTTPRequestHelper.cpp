@@ -26,18 +26,18 @@ namespace Qv2ray::common
     {
         switch (GlobalConfig.networkConfig.proxyType)
         {
-            case Qv2rayNetworkConfig::QVPROXY_NONE:
+            case Qv2rayConfig_Network::QVPROXY_NONE:
             {
                 DEBUG(MODULE_NETWORK, "Get without proxy.")
                 accessManager.setProxy(QNetworkProxy(QNetworkProxy::ProxyType::NoProxy));
                 break;
             }
-            case Qv2rayNetworkConfig::QVPROXY_SYSTEM:
+            case Qv2rayConfig_Network::QVPROXY_SYSTEM:
             {
                 accessManager.setProxy(QNetworkProxyFactory::systemProxyForQuery().first());
                 break;
             }
-            case Qv2rayNetworkConfig::QVPROXY_CUSTOM:
+            case Qv2rayConfig_Network::QVPROXY_CUSTOM:
             {
                 QNetworkProxy p{
                     GlobalConfig.networkConfig.type == "http" ? QNetworkProxy::HttpProxy : QNetworkProxy::Socks5Proxy, //
@@ -56,15 +56,19 @@ namespace Qv2ray::common
         }
 
         request.setAttribute(QNetworkRequest::RedirectPolicyAttribute, QNetworkRequest::NoLessSafeRedirectPolicy);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+        request.setAttribute(QNetworkRequest::Http2AllowedAttribute, true);
+#else
         request.setAttribute(QNetworkRequest::HTTP2AllowedAttribute, true);
+#endif
         auto ua = GlobalConfig.networkConfig.userAgent;
         ua.replace("$VERSION", QV2RAY_VERSION_STRING);
         request.setHeader(QNetworkRequest::KnownHeaders::UserAgentHeader, ua);
     }
 
-    QByteArray QvHttpRequestHelper::Get(const QString &url)
+    QByteArray QvHttpRequestHelper::Get(const QUrl &url)
     {
-        request.setUrl({ url });
+        request.setUrl(url);
         setAccessManagerAttributes(accessManager);
         auto _reply = accessManager.get(request);
         //
@@ -88,7 +92,11 @@ namespace Qv2ray::common
 
     void QvHttpRequestHelper::onRequestFinished_p()
     {
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+        if (reply->attribute(QNetworkRequest::Http2WasUsedAttribute).toBool())
+#else
         if (reply->attribute(QNetworkRequest::HTTP2WasUsedAttribute).toBool())
+#endif
         {
             DEBUG(MODULE_NETWORK, "HTTP/2 was used.")
         }

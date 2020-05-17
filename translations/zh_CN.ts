@@ -123,6 +123,13 @@
     </message>
 </context>
 <context>
+    <name>ConnectionSettingsWidget</name>
+    <message>
+        <source>Form</source>
+        <translation>窗体</translation>
+    </message>
+</context>
+<context>
     <name>ConnectionWidget</name>
     <message>
         <source>Form</source>
@@ -150,6 +157,61 @@
     </message>
 </context>
 <context>
+    <name>GroupManager</name>
+    <message>
+        <source>Connection Management</source>
+        <translation>连接管理</translation>
+    </message>
+    <message>
+        <source>Reload Subscription</source>
+        <translation type="vanished">更新订阅</translation>
+    </message>
+    <message>
+        <source>Would you like to reload the subscription?</source>
+        <translation type="vanished">您要更新此订阅吗？</translation>
+    </message>
+    <message>
+        <source>Deleting a subscription</source>
+        <translation>删除订阅</translation>
+    </message>
+    <message>
+        <source>All connections will be moved to default group, do you want to continue?</source>
+        <translation>本订阅中的所有连接都将移动到默认分组，您确定要继续吗？</translation>
+    </message>
+    <message>
+        <source>Export Connection(s)</source>
+        <translation>导出连接</translation>
+    </message>
+    <message>
+        <source>Delete Connection(s)</source>
+        <translation>删除连接</translation>
+    </message>
+    <message>
+        <source>Copy to...</source>
+        <translation>复制到...</translation>
+    </message>
+    <message>
+        <source>Move to...</source>
+        <translation>移动到...</translation>
+    </message>
+    <message>
+        <source>Link to...</source>
+        <translation>链接到...</translation>
+    </message>
+    <message>
+        <source>New Group</source>
+        <translation>新分组</translation>
+    </message>
+    <message>
+        <source>Update Subscription</source>
+        <translation>更新订阅</translation>
+    </message>
+    <message>
+        <source>Would you like to update the subscription?</source>
+        <translation>您要更新订阅吗？</translation>
+    </message>
+</context>
+<context>
     <name>ImportConfigWindow</name>
     <message>
         <source>Import file</source>
@@ -161,11 +223,11 @@
     </message>
     <message>
         <source>Import Source</source>
-        <translation>导入源</translation>
+        <translation type="vanished">导入源</translation>
     </message>
     <message>
         <source>Existing File</source>
-        <translation>已存在的文件</translation>
+        <translation type="vanished">已存在的文件</translation>
     </message>
     <message>
         <source> secs</source>
@@ -181,7 +243,7 @@
     </message>
     <message>
         <source>Subscription Link</source>
-        <translation>订阅链接</translation>
+        <translation type="vanished">订阅链接</translation>
     </message>
     <message>
         <source>Import</source>
@@ -205,7 +267,7 @@
     </message>
     <message>
         <source>VMess / QRCode</source>
-        <translation>VMess / 二维码</translation>
+        <translation type="vanished">VMess / 二维码</translation>
     </message>
     <message>
         <source>VMess Connection String</source>
@@ -225,7 +287,7 @@
     </message>
     <message>
         <source>Subscriptions / Manually Input</source>
-        <translation>订阅/手动输入</translation>
+        <translation type="vanished">订阅/手动输入</translation>
     </message>
     <message>
         <source>Manually Input Connections</source>
@@ -233,23 +295,23 @@
     </message>
     <message>
         <source>Route Editor</source>
-        <translation>路由编辑器</translation>
+        <translation type="vanished">路由编辑器</translation>
     </message>
     <message>
         <source>Open Route Editor</source>
-        <translation>打开路由编辑器</translation>
+        <translation type="vanished">打开路由编辑器</translation>
     </message>
     <message>
         <source>Subscription Manager</source>
-        <translation>订阅管理</translation>
+        <translation type="vanished">订阅管理</translation>
     </message>
     <message>
         <source>Open Subscription Manager</source>
-        <translation>打开订阅管理器</translation>
+        <translation type="vanished">打开订阅管理器</translation>
     </message>
     <message>
         <source>Connection Editor</source>
-        <translation>连接编辑器</translation>
+        <translation type="vanished">连接编辑器</translation>
     </message>
     <message>
         <source>Open Connection Editor</source>
@@ -337,11 +399,63 @@
     </message>
     <message>
         <source>Connection Share Link</source>
-        <translation>节点分享链接</translation>
+        <translation type="vanished">节点分享链接</translation>
     </message>
     <message>
         <source>Paste share link here, one line for each.</source>
         <translation>在此粘贴，一行一个。</translation>
+    </message>
+    <message>
+        <source>Import To Group</source>
+        <translation>导入组中</translation>
+    </message>
+    <message>
+        <source>Link</source>
+        <translation>链接</translation>
+    </message>
+    <message>
+        <source>QR Code</source>
+        <translation>二维码</translation>
+    </message>
+    <message>
+        <source>Image</source>
+        <translation>图像</translation>
+    </message>
+    <message>
+        <source>Detected Link</source>
+        <translation>检测到的链接</translation>
+    </message>
+    <message>
+        <source>Input Manually</source>
+        <translation>手动输入</translation>
+    </message>
+    <message>
+        <source>Simple Editor</source>
+        <translation>简单编辑器</translation>
+    </message>
+    <message>
+        <source>Complex Editor</source>
+        <translation>复杂编辑器</translation>
+    </message>
+    <message>
+        <source>Open Route / Complex Connection Editor</source>
+        <translation>打开路由/复杂连接编辑器</translation>
+    </message>
+    <message>
+        <source>You can manually input connection here.</source>
+        <translation>你可在此手动输入连接信息。</translation>
+    </message>
+    <message>
+        <source>Advanced</source>
+        <translation>高级</translation>
+    </message>
+    <message>
+        <source>New Connection</source>
+        <translation>添加连接</translation>
+    </message>
+    <message>
+        <source>Failed to import connection</source>
+        <translation>连接导入失败</translation>
     </message>
 </context>
 <context>
@@ -556,6 +670,13 @@
     </message>
 </context>
 <context>
+    <name>InboundSettingsWidget</name>
+    <message>
+        <source>Form</source>
+        <translation>窗体</translation>
+    </message>
+</context>
+<context>
     <name>JsonEditor</name>
     <message>
         <source>OK</source>
@@ -614,11 +735,11 @@
     </message>
     <message>
         <source>Subscriptions</source>
-        <translation>订阅</translation>
+        <translation type="vanished">订阅</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation>添加</translation>
+        <translation type="vanished">添加</translation>
     </message>
     <message>
         <source>Preferences</source>
@@ -947,6 +1068,22 @@
     <message>
         <source>Plugins</source>
         <translation>插件</translation>
+    </message>
+    <message>
+        <source>Groups</source>
+        <translation type="vanished">分组</translation>
+    </message>
+    <message>
+        <source>Add Connection</source>
+        <translation type="vanished">添加连接</translation>
+    </message>
+    <message>
+        <source>New Connection</source>
+        <translation>添加连接</translation>
+    </message>
+    <message>
+        <source>Groups / Subscriptions</source>
+        <translation>分组/订阅</translation>
     </message>
 </context>
 <context>
@@ -1351,15 +1488,15 @@
     </message>
     <message>
         <source>Network Toolbar Settings</source>
-        <translation>网络工具栏设置</translation>
+        <translation type="vanished">网络工具栏设置</translation>
     </message>
     <message>
         <source>Apply Network Speed Bar UI Settings</source>
-        <translation>应用网络速度栏界面设置</translation>
+        <translation type="vanished">应用网络速度栏界面设置</translation>
     </message>
     <message>
         <source>Items</source>
-        <translation>项目</translation>
+        <translation type="vanished">项目</translation>
     </message>
     <message>
         <source>General Settings</source>
@@ -1395,11 +1532,11 @@
     </message>
     <message>
         <source>-</source>
-        <translation>-</translation>
+        <translation type="vanished">-</translation>
     </message>
     <message>
         <source>+</source>
-        <translation>+</translation>
+        <translation type="vanished">+</translation>
     </message>
     <message>
         <source>Page Y Offset</source>
@@ -1407,55 +1544,55 @@
     </message>
     <message>
         <source>Pages</source>
-        <translation>页面</translation>
+        <translation type="vanished">页面</translation>
     </message>
     <message>
         <source>Lines</source>
-        <translation>行</translation>
+        <translation type="vanished">行</translation>
     </message>
     <message>
         <source>This feature is not stable and no documentation is provided, please use it at your own risk!</source>
-        <translation>此功能不够稳定，且暂无文档，使用时需自负风险！</translation>
+        <translation type="vanished">此功能不够稳定，且暂无文档，使用时需自负风险！</translation>
     </message>
     <message>
         <source>Text Style</source>
-        <translation>文字样式</translation>
+        <translation type="vanished">文字样式</translation>
     </message>
     <message>
         <source>Font</source>
-        <translation>字体</translation>
+        <translation type="vanished">字体</translation>
     </message>
     <message>
         <source>Bold</source>
-        <translation>粗体</translation>
+        <translation type="vanished">粗体</translation>
     </message>
     <message>
         <source>Italic</source>
-        <translation>斜体</translation>
+        <translation type="vanished">斜体</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>大小</translation>
+        <translation type="vanished">大小</translation>
     </message>
     <message>
         <source>Color</source>
-        <translation>颜色</translation>
+        <translation type="vanished">颜色</translation>
     </message>
     <message>
         <source>A:</source>
-        <translation>A:</translation>
+        <translation type="vanished">A:</translation>
     </message>
     <message>
         <source>R:</source>
-        <translation>R:</translation>
+        <translation type="vanished">R:</translation>
     </message>
     <message>
         <source>G:</source>
-        <translation>G:</translation>
+        <translation type="vanished">G:</translation>
     </message>
     <message>
         <source>B:</source>
-        <translation>B:</translation>
+        <translation type="vanished">B:</translation>
     </message>
     <message>
         <source>...</source>
@@ -1463,23 +1600,23 @@
     </message>
     <message>
         <source>Style</source>
-        <translation>样式</translation>
+        <translation type="vanished">样式</translation>
     </message>
     <message>
         <source>Content</source>
-        <translation>内容</translation>
+        <translation type="vanished">内容</translation>
     </message>
     <message>
         <source>Content Type</source>
-        <translation>内容类型</translation>
+        <translation type="vanished">内容类型</translation>
     </message>
     <message>
         <source>Text/Tag</source>
-        <translation>文本/标签</translation>
+        <translation type="vanished">文本/标签</translation>
     </message>
     <message>
         <source>You can config how the network speed toolbar looks like in this panel</source>
-        <translation>您可以设定网络速度工具栏的外观</translation>
+        <translation type="vanished">您可以设定网络速度工具栏的外观</translation>
     </message>
     <message>
         <source>About</source>
@@ -1519,15 +1656,15 @@
     </message>
     <message>
         <source>Use Darkmode Theme</source>
-        <translation>使用暗色模式主题</translation>
+        <translation type="vanished">使用暗色模式主题</translation>
     </message>
     <message>
         <source>Page</source>
-        <translation>页</translation>
+        <translation type="vanished">页</translation>
     </message>
     <message>
         <source>Item(s)</source>
-        <translation>项目</translation>
+        <translation type="vanished">项目</translation>
     </message>
     <message>
         <source>Enable tProxy Support</source>
@@ -1539,7 +1676,7 @@
     </message>
     <message>
         <source>Qv2ray Network Toolbar is disabled and still under test. Add --withToolbarPlugin to enable.</source>
-        <translation>Qv2ray 的网络工具栏已被禁用，请使用 --withToolbarPlugin 来启用。</translation>
+        <translation type="vanished">Qv2ray 的网络工具栏已被禁用，请使用 --withToolbarPlugin 来启用。</translation>
     </message>
     <message>
         <source>Version: %1</source>
@@ -1591,15 +1728,15 @@
     </message>
     <message>
         <source>Apply network toolbar settings</source>
-        <translation>应用网络工具栏设置</translation>
+        <translation type="vanished">应用网络工具栏设置</translation>
     </message>
     <message>
         <source>All other modified settings will be applied as well after this object.</source>
-        <translation>已经编辑的其它设置也会被同时应用。</translation>
+        <translation type="vanished">已经编辑的其它设置也会被同时应用。</translation>
     </message>
     <message>
         <source>Do you want to continue?</source>
-        <translation>你想继续吗？</translation>
+        <translation type="vanished">你想继续吗？</translation>
     </message>
     <message>
         <source>Dangerous Operation</source>
@@ -1885,11 +2022,11 @@ Custom DNS Settings</source>
     </message>
     <message>
         <source>Page Y Axis Offset</source>
-        <translation>页面 Y 轴偏移</translation>
+        <translation type="vanished">页面 Y 轴偏移</translation>
     </message>
     <message>
         <source>Select Color</source>
-        <translation>选择颜色</translation>
+        <translation type="vanished">选择颜色</translation>
     </message>
     <message>
         <source>Ignored Version</source>
@@ -1963,7 +2100,7 @@ But could damage your server if improperly used.</source>
     </message>
     <message>
         <source>Curtom Proxy</source>
-        <translation>自定义代理</translation>
+        <translation type="vanished">自定义代理</translation>
     </message>
     <message>
         <source>Network Options</source>
@@ -1979,15 +2116,117 @@ But could damage your server if improperly used.</source>
     </message>
     <message>
         <source>redirect</source>
-        <translation>重定向</translation>
+        <translation type="vanished">重定向</translation>
     </message>
     <message>
         <source>tproxy</source>
-        <translation>tProxy</translation>
+        <translation type="vanished">tProxy</translation>
     </message>
     <message>
         <source>Outbound Mark</source>
         <translation>出站 Mark</translation>
+    </message>
+    <message>
+        <source>Sniffing</source>
+        <translation>嗅探</translation>
+    </message>
+    <message>
+        <source>Use V2ray DNS for Freedom Outbound</source>
+        <translation>为自由出站使用 V2Ray DNS</translation>
+    </message>
+    <message>
+        <source>Bypass Bittorrent Protocol</source>
+        <translation>绕过 BitTorrent 协议</translation>
+    </message>
+    <message>
+        <source>Note</source>
+        <translation>注意</translation>
+    </message>
+    <message>
+        <source>To recognize the protocol of a connection, one must enable sniffing option in inbound proxy.</source>
+        <translation>要识别网络连接的协议，必须要启用入站代理中的嗅探选项。</translation>
+    </message>
+    <message>
+        <source>tproxy inbound&apos;s sniffing is enabled by default.</source>
+        <translation>tProxy 入站的嗅探选项默认开启。</translation>
+    </message>
+    <message>
+        <source>These settings are for Qv2ray itself.
+For example, for updating subscriptions.</source>
+        <translation>这些设定是针对 Qv2ray 本身的。
+例如，用在更新订阅时。</translation>
+    </message>
+    <message>
+        <source>Disabling API Subsystem</source>
+        <translation>禁用 API 子系统</translation>
+    </message>
+    <message>
+        <source>Disabling API subsystem will also disable the statistics function of Qv2ray.</source>
+        <translation>如果禁用 API 子系统，Qv2ray 的统计功能也会被一同禁用。</translation>
+    </message>
+    <message>
+        <source>Speed chart and traffic statistics will be disabled.</source>
+        <translation>速度图表和流量统计功能将不再可用。</translation>
+    </message>
+    <message>
+        <source>Use built-in darkmode Theme</source>
+        <translation>使用内置暗色模式主题</translation>
+    </message>
+    <message>
+        <source>NTP Checker</source>
+        <translation>网络时间检查器</translation>
+    </message>
+    <message>
+        <source>Check date and time from server:</source>
+        <translation>从NTP服务器检查日期与时间：</translation>
+    </message>
+    <message>
+        <source>Your time offset is %1 seconds, which is too high.</source>
+        <translation>你的时间偏差为 %1 秒，太高了。</translation>
+    </message>
+    <message>
+        <source>Please synchronize your system to use V2Ray.</source>
+        <translation>请同步系统时间，否则无法正常使用 V2Ray。</translation>
+    </message>
+    <message>
+        <source>Time Inaccurate</source>
+        <translation>时间不准</translation>
+    </message>
+    <message>
+        <source>Your time offset is %1 seconds, which is a little high.</source>
+        <translation>你的时间偏差为 %1 秒，有点高。</translation>
+    </message>
+    <message>
+        <source>V2Ray may still work, but we suggest you synchronize your clock.</source>
+        <translation>V2Ray 可能不受影响，但我们建议同步时间。</translation>
+    </message>
+    <message>
+        <source>Time Somewhat Inaccurate</source>
+        <translation>时间略有偏差</translation>
+    </message>
+    <message>
+        <source>Your time offset is %1 seconds, which looks good.</source>
+        <translation>你的时间偏差为 %1 秒，没有问题。</translation>
+    </message>
+    <message>
+        <source>V2Ray may not suffer from time inaccuracy.</source>
+        <translation>V2Ray 会正常工作。</translation>
+    </message>
+    <message>
+        <source>Time Accurate</source>
+        <translation>时间准确</translation>
+    </message>
+    <message>
+        <source>Failed to lookup server: %1</source>
+        <translation>无法查找服务器：%1</translation>
+    </message>
+    <message>
+        <source>Check Date and Time from Network</source>
+        <translation>从网络检查日期与时间</translation>
+    </message>
+    <message>
+        <source>NTP</source>
+        <translation>NTP</translation>
     </message>
 </context>
 <context>
@@ -2026,7 +2265,7 @@ But could damage your server if improperly used.</source>
     </message>
     <message>
         <source>seems like a v1 vmess, we don&apos;t support it</source>
-        <translation>似乎导入了 v1 版本的 VMess，我们不支持</translation>
+        <translation type="vanished">似乎导入了 v1 版本的 VMess，我们不支持</translation>
     </message>
     <message>
         <source>Warning</source>
@@ -2038,91 +2277,91 @@ But could damage your server if improperly used.</source>
     </message>
     <message>
         <source>Cannot Start Qv2ray</source>
-        <translation>无法启动 Qv2ray</translation>
+        <translation type="vanished">无法启动 Qv2ray</translation>
     </message>
     <message>
         <source>Cannot find a place to store config files.</source>
-        <translation>找不到保存配置文件的地方。</translation>
+        <translation type="vanished">找不到保存配置文件的地方。</translation>
     </message>
     <message>
         <source>Qv2ray has searched these paths below:</source>
-        <translation>Qv2ray 搜索了以下路径：</translation>
+        <translation type="vanished">Qv2ray 搜索了以下路径：</translation>
     </message>
     <message>
         <source>It usually means you don&apos;t have the write permission to all of those locations.</source>
-        <translation>这通常意味着您没有所有这些位置的文件写入权限。</translation>
+        <translation type="vanished">这通常意味着您没有所有这些位置的文件写入权限。</translation>
     </message>
     <message>
         <source>Qv2ray will now exit.</source>
-        <translation>Qv2ray 现在将退出。</translation>
+        <translation type="vanished">Qv2ray 现在将退出。</translation>
     </message>
     <message>
         <source>Failed to initialise Qv2ray</source>
-        <translation>初始化 Qv2ray 失败</translation>
+        <translation type="vanished">初始化 Qv2ray 失败</translation>
     </message>
     <message>
         <source>Please report if you think it&apos;s a bug.</source>
-        <translation>如果您认为它是一个bug，请&apos;报告。</translation>
+        <translation type="vanished">如果您认为它是一个bug，请&apos;报告。</translation>
     </message>
     <message>
         <source>You cannot run Qv2ray as root, please use --I-just-wanna-run-with-root if you REALLY want to do so.</source>
-        <translation>您不能以root用户身份运行Qv2ray，如果您确实想这样做，请使用 --I-just-wanna-run-with-root。</translation>
+        <translation type="vanished">您不能以root用户身份运行Qv2ray，如果您确实想这样做，请使用 --I-just-wanna-run-with-root。</translation>
     </message>
     <message>
         <source> --&gt; USE IT AT YOUR OWN RISK!</source>
-        <translation> --&gt; 请自负风险！</translation>
+        <translation type="vanished"> --&gt; 请自负风险！</translation>
     </message>
     <message>
         <source>Debug version</source>
-        <translation>调试版</translation>
+        <translation type="vanished">调试版</translation>
     </message>
     <message>
         <source>Qv2ray Cannot Continue</source>
-        <translation>Qv2ray 无法继续</translation>
+        <translation type="vanished">Qv2ray 无法继续</translation>
     </message>
     <message>
         <source>You are running a lower version of Qv2ray compared to the current config file.</source>
-        <translation>与当前配置文件相比，您正在运行一个较低版本的 Qv2ray。</translation>
+        <translation type="vanished">与当前配置文件相比，您正在运行一个较低版本的 Qv2ray。</translation>
     </message>
     <message>
         <source>Please check if there&apos;s an issue explaining about it.</source>
-        <translation>请检查是否存在&apos;有关此问题的说明。</translation>
+        <translation type="vanished">请检查是否存在&apos;有关此问题的说明。</translation>
     </message>
     <message>
         <source>Or submit a new issue if you think this is an error.</source>
-        <translation>或者如果你认为这是一个错误，请提交一个新问题。</translation>
+        <translation type="vanished">或者如果你认为这是一个错误，请提交一个新问题。</translation>
     </message>
     <message>
         <source>Dependency Missing</source>
-        <translation>缺少依赖关系</translation>
+        <translation type="vanished">缺少依赖关系</translation>
     </message>
     <message>
         <source>This could be caused by a missing of `openssl` package in your system.</source>
-        <translation>这可能是系统中缺少`openssl`软件包造成的。</translation>
+        <translation type="vanished">这可能是系统中缺少`openssl`软件包造成的。</translation>
     </message>
     <message>
         <source>If you are using an AppImage from Github Action, please report a bug.</source>
-        <translation>如果您使用的是来自 Github Action 的 AppImage，请报告错误。</translation>
+        <translation type="vanished">如果您使用的是来自 Github Action 的 AppImage，请报告错误。</translation>
     </message>
     <message>
         <source>Cannot find openssl libs</source>
-        <translation>找不到 OpenSSL 库</translation>
+        <translation type="vanished">找不到 OpenSSL 库</translation>
     </message>
     <message>
         <source>Failed to determine the location of config file:</source>
-        <translation>无法确定配置文件的位置：</translation>
+        <translation type="vanished">无法确定配置文件的位置：</translation>
     </message>
     <message>
         <source>Qv2ray has found a config file, but it failed to be loaded due to some errors.</source>
-        <translation>Qv2ray已找到配置文件，但由于某些错误而无法加载。</translation>
+        <translation type="vanished">Qv2ray已找到配置文件，但由于某些错误而无法加载。</translation>
     </message>
     <message>
         <source>A workaround is to remove the this file and restart Qv2ray:</source>
-        <translation>一种解决方法是删除此文件并重新启动Qv2ray：</translation>
+        <translation type="vanished">一种解决方法是删除此文件并重新启动Qv2ray：</translation>
     </message>
     <message>
         <source>Technical Details</source>
-        <translation>技术细节</translation>
+        <translation type="vanished">技术细节</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -2242,55 +2481,55 @@ But could damage your server if improperly used.</source>
     </message>
     <message>
         <source>Not connected</source>
-        <translation>未连接</translation>
+        <translation type="vanished">未连接</translation>
     </message>
     <message>
         <source>Connected</source>
-        <translation>已连接</translation>
+        <translation type="vanished">已连接</translation>
     </message>
     <message>
         <source>Custom Text</source>
-        <translation>自定义文本</translation>
+        <translation type="vanished">自定义文本</translation>
     </message>
     <message>
         <source>Current Time</source>
-        <translation>当前时间</translation>
+        <translation type="vanished">当前时间</translation>
     </message>
     <message>
         <source>Current Date</source>
-        <translation>当前日期</translation>
+        <translation type="vanished">当前日期</translation>
     </message>
     <message>
         <source>Current Qv2ray Version</source>
-        <translation>当前 Qv2ray 版本</translation>
+        <translation type="vanished">当前 Qv2ray 版本</translation>
     </message>
     <message>
         <source>Current Connection Name</source>
-        <translation>当前连接名称</translation>
+        <translation type="vanished">当前连接名称</translation>
     </message>
     <message>
         <source>Current Connection Status</source>
-        <translation>当前连接状态</translation>
+        <translation type="vanished">当前连接状态</translation>
     </message>
     <message>
         <source>Total Upload Speed</source>
-        <translation>总上传速度</translation>
+        <translation type="vanished">总上传速度</translation>
     </message>
     <message>
         <source>Total Download Speed</source>
-        <translation>总下载速度</translation>
+        <translation type="vanished">总下载速度</translation>
     </message>
     <message>
         <source>Total Uploaded Data</source>
-        <translation>总上传数据</translation>
+        <translation type="vanished">总上传数据</translation>
     </message>
     <message>
         <source>Total Downloaded Data</source>
-        <translation>总下载数据</translation>
+        <translation type="vanished">总下载数据</translation>
     </message>
     <message>
         <source>Current Connection Latency</source>
-        <translation>当前连接延迟</translation>
+        <translation type="vanished">当前连接延迟</translation>
     </message>
     <message>
         <source>%1 - %2 (rate %3)</source>
@@ -2400,6 +2639,38 @@ But could damage your server if improperly used.</source>
         <source>Unknown</source>
         <translation>未知</translation>
     </message>
+    <message>
+        <source>Deepin Detected</source>
+        <translation>检测到 Deepin</translation>
+    </message>
+    <message>
+        <source>Deepin plays smart and sets you the wrong HTTPS_PROXY environment variable. </source>
+        <translation type="vanished">默认情况下，Deepin 自作聪明，会给你设置错误的 HTTPS_PROXY 环境变量。</translation>
+    </message>
+    <message>
+        <source>The original scheme should be http://, but he will replace with https://, causing the problem. </source>
+        <translation type="vanished">原 scheme 应为 http://，但 Deepin 将其替换成了 https://，导致 HTTPS 代理无法正常使用。</translation>
+    </message>
+    <message>
+        <source>Qv2ray will help you change it back and make things work again. </source>
+        <translation type="vanished">Qv2ray 会尝试帮你改回去，以期解决此问题。</translation>
+    </message>
+    <message>
+        <source>Deepin plays smart and sets you the wrong HTTPS_PROXY, FTP_PROXY environment variable.</source>
+        <translation>Deepin可能自作聪明，为你设置了错误的 HTTPS_PROXY 和 FTP_PROXY 环境变量。</translation>
+    </message>
+    <message>
+        <source>The origin scheme http is wrongly replaced by https and ftp, causing the problem.</source>
+        <translation>原来正确的 http:// 可能被错误地替换为 https:// 和 ftp://，导致这个问题。</translation>
+    </message>
+    <message>
+        <source>Qv2ray cannot help you change them back. Please don&apos;t blame us if things go wrong.</source>
+        <translation>Qv2ray 很遗憾无法帮你改回来。若因此遇到问题，请勿指责吾等。</translation>
+    </message>
+    <message>
+        <source>trusted abi</source>
+        <translation>受信 ABI</translation>
+    </message>
 </context>
 <context>
     <name>Qv2ray::common::QvCommandArgParser</name>
@@ -2433,7 +2704,7 @@ But could damage your server if improperly used.</source>
     </message>
     <message>
         <source>Enable Qv2ray network toolbar plugin</source>
-        <translation>启用 Qv2ray 网络工具栏插件</translation>
+        <translation type="vanished">启用 Qv2ray 网络工具栏插件</translation>
     </message>
 </context>
 <context>
@@ -2495,6 +2766,14 @@ But could damage your server if improperly used.</source>
         <source>A plugin kernel failed to start. Please check the outbound settings.</source>
         <translation>一个插件内核启动失败。请检查出站设置。</translation>
     </message>
+    <message>
+        <source>Another process is using the port required to start the connection:</source>
+        <translation>另一进程正在使用启动此连接所需的端口：</translation>
+    </message>
+    <message>
+        <source>Port %1 for inbound tag: &quot;%2&quot;</source>
+        <translation>入站标签 %2 需要端口 %1</translation>
+    </message>
 </context>
 <context>
     <name>Qv2ray::core::handlers::QvConfigHandler</name>
@@ -2504,7 +2783,7 @@ But could damage your server if improperly used.</source>
     </message>
     <message>
         <source>File does not exist.</source>
-        <translation>文件不存在。</translation>
+        <translation type="vanished">文件不存在。</translation>
     </message>
     <message>
         <source>Group does not exist</source>
@@ -2517,6 +2796,10 @@ But could damage your server if improperly used.</source>
     <message>
         <source>%1 entrie(s) have been found from the subscription source, do you want to continue?</source>
         <translation>订阅源仅返回了 %1 个节点，确定要继续吗？</translation>
+    </message>
+    <message>
+        <source>Failed to start connection</source>
+        <translation>连接启动失败</translation>
     </message>
 </context>
 <context>
@@ -3289,19 +3572,19 @@ Maybe you have downloaded the wrong core?</source>
     <name>SubscriptionEditor</name>
     <message>
         <source>Reload Subscription</source>
-        <translation>更新订阅</translation>
+        <translation type="vanished">更新订阅</translation>
     </message>
     <message>
         <source>Would you like to reload the subscription?</source>
-        <translation>您要更新此订阅吗？</translation>
+        <translation type="vanished">您要更新此订阅吗？</translation>
     </message>
     <message>
         <source>Deleting a subscription</source>
-        <translation>删除订阅</translation>
+        <translation type="vanished">删除订阅</translation>
     </message>
     <message>
         <source>All connections will be moved to default group, do you want to continue?</source>
-        <translation>本订阅中的所有连接都将移动到默认分组，您确定要继续吗？</translation>
+        <translation type="vanished">本订阅中的所有连接都将移动到默认分组，您确定要继续吗？</translation>
     </message>
 </context>
 <context>
@@ -3345,6 +3628,109 @@ Maybe you have downloaded the wrong core?</source>
         <source>/s</source>
         <comment>per second</comment>
         <translation>/s</translation>
+    </message>
+</context>
+<context>
+    <name>w_GroupManager</name>
+    <message>
+        <source>Group Editor</source>
+        <translation>组编辑器</translation>
+    </message>
+    <message>
+        <source>Group List</source>
+        <translation>组列表</translation>
+    </message>
+    <message>
+        <source>Add Subscription</source>
+        <translation>添加订阅</translation>
+    </message>
+    <message>
+        <source>Remove Subscription</source>
+        <translation>删除订阅</translation>
+    </message>
+    <message>
+        <source>Group Details</source>
+        <translation type="vanished">分组细节</translation>
+    </message>
+    <message>
+        <source>Group Name</source>
+        <translation>分组名称</translation>
+    </message>
+    <message>
+        <source>Subscription Address</source>
+        <translation>订阅地址</translation>
+    </message>
+    <message>
+        <source>Update Interval</source>
+        <translation>更新间隔</translation>
+    </message>
+    <message>
+        <source>Days</source>
+        <translation>天</translation>
+    </message>
+    <message>
+        <source>Last Updated</source>
+        <translation>最后更新</translation>
+    </message>
+    <message>
+        <source>Connection List</source>
+        <translation type="vanished">连接列表</translation>
+    </message>
+    <message>
+        <source>Update Subscription Data</source>
+        <translation>更新订阅数据</translation>
+    </message>
+    <message>
+        <source>Group Info</source>
+        <translation>分组信息</translation>
+    </message>
+    <message>
+        <source>Created At</source>
+        <translation>创建于</translation>
+    </message>
+    <message>
+        <source>Connections</source>
+        <translation>连接</translation>
+    </message>
+    <message>
+        <source>Delete Selection</source>
+        <translation>删除所选项</translation>
+    </message>
+    <message>
+        <source>Export Selection</source>
+        <translation>导出所选项</translation>
+    </message>
+    <message>
+        <source>Subscription Settings</source>
+        <translation>订阅设置</translation>
+    </message>
+    <message>
+        <source>This group is a subscription</source>
+        <translation>此分组是是一个订阅</translation>
+    </message>
+    <message>
+        <source>Connection Settings</source>
+        <translation type="vanished">连接设置</translation>
+    </message>
+    <message>
+        <source>Route Settings</source>
+        <translation type="vanished">路由设定</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>名称</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>类型</translation>
+    </message>
+    <message>
+        <source>Host / Port</source>
+        <translation>地址/端口</translation>
+    </message>
+    <message>
+        <source>Groups</source>
+        <translation>分组</translation>
     </message>
 </context>
 <context>
@@ -3418,47 +3804,47 @@ Maybe you have downloaded the wrong core?</source>
     <name>w_SubscribeEditor</name>
     <message>
         <source>SubscribeEditor</source>
-        <translation>订阅编辑器</translation>
+        <translation type="vanished">订阅编辑器</translation>
     </message>
     <message>
         <source>Subscription List</source>
-        <translation>订阅列表</translation>
+        <translation type="vanished">订阅列表</translation>
     </message>
     <message>
         <source>Add Subscription</source>
-        <translation>添加订阅</translation>
+        <translation type="vanished">添加订阅</translation>
     </message>
     <message>
         <source>Remove Subscription</source>
-        <translation>删除订阅</translation>
+        <translation type="vanished">删除订阅</translation>
     </message>
     <message>
         <source>Subscription Details</source>
-        <translation>订阅详情</translation>
+        <translation type="vanished">订阅详情</translation>
     </message>
     <message>
         <source>Subscription Name</source>
-        <translation>订阅名称</translation>
+        <translation type="vanished">订阅名称</translation>
     </message>
     <message>
         <source>Subscription Address</source>
-        <translation>订阅地址</translation>
+        <translation type="vanished">订阅地址</translation>
     </message>
     <message>
         <source>Update Interval</source>
-        <translation>更新间隔</translation>
+        <translation type="vanished">更新间隔</translation>
     </message>
     <message>
         <source>Days</source>
-        <translation>天</translation>
+        <translation type="vanished">天</translation>
     </message>
     <message>
         <source>Last Updated</source>
-        <translation>最后更新</translation>
+        <translation type="vanished">最后更新</translation>
     </message>
     <message>
         <source>Connection List</source>
-        <translation>连接列表</translation>
+        <translation type="vanished">连接列表</translation>
     </message>
     <message>
         <source>Update Subscription With System Proxy</source>
@@ -3466,7 +3852,7 @@ Maybe you have downloaded the wrong core?</source>
     </message>
     <message>
         <source>Update Subscription Data</source>
-        <translation>更新订阅数据</translation>
+        <translation type="vanished">更新订阅数据</translation>
     </message>
 </context>
 </TS>
